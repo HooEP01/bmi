@@ -25,82 +25,123 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  child: ReusableCard(
-                    cardChild: Column(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.mars,
-                          size: 80.0,
-                        ),
-                        Text('MALE'),
-                      ],
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    child: ReusableCard(
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.mars,
+                            size: 80.0,
+                          ),
+                          Text('MALE'),
+                        ],
+                      ),
+                      cardColor: selectedGender == Gender.male
+                          ? ActiveCardColor
+                          : InactiveColor,
                     ),
-                    cardColor: selectedGender == Gender.male ? ActiveCardColor : InactiveColor,
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                      print('Male was pressed');
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      selectedGender = Gender.male;
-                    });
-                    print('Male was pressed');
-                  },
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  child: ReusableCard(
-                    cardChild: Column(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.venus,
-                          size: 80.0,
-                        ),
-                        Text('FEMALE'),
-                      ],
+                Expanded(
+                  child: GestureDetector(
+                    child: ReusableCard(
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.venus,
+                            size: 80.0,
+                          ),
+                          Text('FEMALE'),
+                        ],
+                      ),
+                      cardColor: selectedGender == Gender.female
+                          ? ActiveCardColor
+                          : InactiveColor,
                     ),
-                    cardColor: selectedGender == Gender.female ? ActiveCardColor : InactiveColor,
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                      print('Female was pressed');
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      selectedGender = Gender.female;
-                    });
-                    print('Female was pressed');
-                  },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Expanded(
             child: ReusableCard(
-              cardChild: Text(''),
+              //TODO: 1. Add a Column, which has children (Text, Row (Text, Text), Slider)
+              //TODO: 2. To align according to baseline, set CrossAxisAlignment - baseline and TextBaseline - alphabetic
+              //TODO: 3. The value of the Slider will be changed based on the onChanged() method
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('HEIGHT'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        '150',
+                        style: TextStyle(
+                          fontSize: 80.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text('cm'),
+                    ],
+                  ),
+                ],
+              ),
               cardColor: ActiveCardColor,
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: ReusableCard(
-                  cardChild: Text(''),
-                  cardColor: ActiveCardColor,
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: ReusableCard(
+                    //TODO: 5. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
+                    //TODO: 6. The RoundIconButton will received gesture that is going to change the value of the weight
+                    cardChild: Text(''),
+                    cardColor: ActiveCardColor,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: ReusableCard(
-                  cardChild: Text(''),
-                  cardColor: ActiveCardColor,
+                Expanded(
+                  child: ReusableCard(
+                    //TODO: 7. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
+                    //TODO: 8. The RoundIconButton will received gesture that is going to change the value of the age
+                    cardChild: Text(''),
+                    cardColor: ActiveCardColor,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Container(
             height: 80.0,
             color: Color(0xFFEB1555),
+            //TODO: 9. Wrap the Center widget with GestureDetector to receive onTap gesture
+            //TODO: 10. The onTap gesture will navigate to the ResultPage() using the Navigator.push()
+            //TODO: 13. The Navigator will push some value to the ResultPage()
+            //TODO: 14. Create a BMI Calculator class to calculate BMI value, display BMI category and display some words of encouragement
             child: Center(
               child: Text(
                 'CALCULATE',
@@ -115,3 +156,15 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
+//TODO: 4. Create a Stateless Widget for the Round Icon button using the following style
+// RawMaterialButton(
+// onPressed: onPress,
+// child: Icon(icon),
+// shape: CircleBorder(),
+// fillColor: Color(0xFF4C4F5E),
+// constraints: BoxConstraints.tightFor(
+// width: 45.0,
+// height: 45.0,
+// ),
+// );
