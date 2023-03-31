@@ -1,3 +1,4 @@
+import 'package:bmi/bmi_calculator.dart';
 import 'package:bmi/result_page.dart';
 import 'package:flutter/material.dart';
 import 'reusable_card.dart';
@@ -229,9 +230,14 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButton(
             onTap: () {
+              BMICalculator bmi = BMICalculator(height: height, weight: weight);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResultPage()),
+                MaterialPageRoute(builder: (context) => ResultPage(
+                  bmiValue: bmi.calcBMI(),
+                  bmiCategory: bmi.displayBMICategory(),
+                  someWords: bmi.displaySomeWords(),
+                )),
               );
             },
             text: 'CALCULATE',

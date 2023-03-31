@@ -7,9 +7,9 @@ class BMICalculator {
 
   BMICalculator({required this.height, required this.weight});
 
-  double calcBMI() {
-    bmi = weight / pow(height, 2);
-    return bmi!;
+  String calcBMI() {
+    bmi = weight / pow(height/100, 2);
+    return bmi!.toStringAsFixed(1);
   }
 
   String displayBMICategory() {
