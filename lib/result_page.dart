@@ -16,10 +16,28 @@ class ResultPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('YOUR RESULT', style: kTitleStyle),
-            ReusableCard(cardChild: Column(), cardColor: kActiveCardColor),
-            // BottomButton(),
+            Center(child: Text('YOUR RESULT', style: kTitleStyle)),
+            Expanded(
+              child: ReusableCard(
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('BMI Category'),
+                      Text('20.0', style: kNumberStyle),
+                      Text('Some words of encouragement here'),
+                    ],
+                  ),
+                  cardColor: kActiveCardColor),
+            ),
+            BottomButton(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              text: 'RE-CALCULATE',
+            ),
           ],
         ),
       ),

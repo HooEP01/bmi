@@ -4,6 +4,7 @@ import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'bottom_button.dart';
+import 'round_icon_button.dart';
 
 // user-defined data type
 enum Gender {
@@ -183,8 +184,6 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    //TODO: 7. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
-                    //TODO: 8. The RoundIconButton will received gesture that is going to change the value of the age
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -235,44 +234,10 @@ class _InputPageState extends State<InputPage> {
                 MaterialPageRoute(builder: (context) => ResultPage()),
               );
             },
+            text: 'CALCULATE',
           ),
         ],
       ),
     );
   }
 }
-
-
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final void Function() onPress;
-
-  RoundIconButton({required this.icon, required this.onPress});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPress,
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(
-        width: 45.0,
-        height: 45.0,
-      ),
-    );
-  }
-}
-
-//TODO: 4. Create a Stateless Widget for the Round Icon button using the following style
-// RawMaterialButton(
-// onPressed: onPress,
-// child: Icon(icon),
-// shape: CircleBorder(),
-// fillColor: Color(0xFF4C4F5E),
-// constraints: BoxConstraints.tightFor(
-// width: 45.0,
-// height: 45.0,
-// ),
-// );
