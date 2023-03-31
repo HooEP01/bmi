@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-const Color InactiveColor = Color(0xFF111328);
-const Color ActiveCardColor = Color(0xFF1D1E33);
+import 'constants.dart';
 
 // user-defined data type
 enum Gender {
@@ -44,12 +42,17 @@ class _InputPageState extends State<InputPage> {
                             FontAwesomeIcons.mars,
                             size: 80.0,
                           ),
-                          Text('MALE'),
+                          Text(
+                            'MALE',
+                            style: TextStyle(
+                              color: kTextColor,
+                            ),
+                          ),
                         ],
                       ),
                       cardColor: selectedGender == Gender.male
-                          ? ActiveCardColor
-                          : InactiveColor,
+                          ? kActiveCardColor
+                          : kInactiveColor,
                     ),
                     onTap: () {
                       setState(() {
@@ -69,12 +72,15 @@ class _InputPageState extends State<InputPage> {
                             FontAwesomeIcons.venus,
                             size: 80.0,
                           ),
-                          Text('FEMALE'),
+                          Text(
+                            'FEMALE',
+                            style: TextStyle(color: kTextColor),
+                          ),
                         ],
                       ),
                       cardColor: selectedGender == Gender.female
-                          ? ActiveCardColor
-                          : InactiveColor,
+                          ? kActiveCardColor
+                          : kInactiveColor,
                     ),
                     onTap: () {
                       setState(() {
@@ -89,13 +95,13 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              //TODO: 1. Add a Column, which has children (Text, Row (Text, Text), Slider)
-              //TODO: 2. To align according to baseline, set CrossAxisAlignment - baseline and TextBaseline - alphabetic
-              //TODO: 3. The value of the Slider will be changed based on the onChanged() method
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('HEIGHT'),
+                  Text(
+                    'HEIGHT',
+                    style: TextStyle(color: kTextColor),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -103,12 +109,12 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       Text(
                         height.toString(),
-                        style: TextStyle(
-                          fontSize: 50.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: kNumberStyle,
                       ),
-                      Text('cm'),
+                      Text(
+                        'cm',
+                        style: TextStyle(color: kTextColor),
+                      ),
                     ],
                   ),
                   Slider(
@@ -125,7 +131,7 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ],
               ),
-              cardColor: ActiveCardColor,
+              cardColor: kActiveCardColor,
             ),
           ),
           Expanded(
@@ -135,8 +141,21 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     //TODO: 5. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
                     //TODO: 6. The RoundIconButton will received gesture that is going to change the value of the weight
-                    cardChild: Text(''),
-                    cardColor: ActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: TextStyle(color: kTextColor),
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(),
+                      ],
+                    ),
+                    cardColor: kActiveCardColor,
                   ),
                 ),
                 Expanded(
@@ -144,7 +163,7 @@ class _InputPageState extends State<InputPage> {
                     //TODO: 7. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
                     //TODO: 8. The RoundIconButton will received gesture that is going to change the value of the age
                     cardChild: Text(''),
-                    cardColor: ActiveCardColor,
+                    cardColor: kActiveCardColor,
                   ),
                 ),
               ],
