@@ -1,7 +1,9 @@
+import 'package:bmi/result_page.dart';
 import 'package:flutter/material.dart';
 import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
+import 'bottom_button.dart';
 
 // user-defined data type
 enum Gender {
@@ -139,8 +141,6 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    //TODO: 5. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
-                    //TODO: 6. The RoundIconButton will received gesture that is going to change the value of the weight
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -185,34 +185,64 @@ class _InputPageState extends State<InputPage> {
                   child: ReusableCard(
                     //TODO: 7. Add a Column, which has children (Text, Text, Row (RoundIconButton, RoundIconButton))
                     //TODO: 8. The RoundIconButton will received gesture that is going to change the value of the age
-                    cardChild: Text(''),
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: TextStyle(color: kTextColor),
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                     cardColor: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            height: 80.0,
-            color: Color(0xFFEB1555),
-            //TODO: 9. Wrap the Center widget with GestureDetector to receive onTap gesture
-            //TODO: 10. The onTap gesture will navigate to the ResultPage() using the Navigator.push()
-            //TODO: 13. The Navigator will push some value to the ResultPage()
-            //TODO: 14. Create a BMI Calculator class to calculate BMI value, display BMI category and display some words of encouragement
-            child: Center(
-              child: Text(
-                'CALCULATE',
-                style: TextStyle(
-                  fontSize: 30.0,
-                ),
-              ),
-            ),
+          BottomButton(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResultPage()),
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
+
+
 
 class RoundIconButton extends StatelessWidget {
   final IconData icon;

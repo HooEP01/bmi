@@ -7,3 +7,8 @@ const kNumberStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.bold,
 );
+const kTitleStyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.green,
+);
