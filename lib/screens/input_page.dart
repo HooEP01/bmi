@@ -41,7 +41,7 @@ class _InputPageState extends State<InputPage> {
                     child: ReusableCard(
                       cardChild: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             FontAwesomeIcons.mars,
                             size: 80.0,
@@ -233,11 +233,12 @@ class _InputPageState extends State<InputPage> {
               BMICalculator bmi = BMICalculator(height: height, weight: weight);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResultPage(
-                  bmiValue: bmi.calcBMI(),
-                  bmiCategory: bmi.displayBMICategory(),
-                  someWords: bmi.displaySomeWords(),
-                )),
+                MaterialPageRoute(
+                    builder: (context) => ResultPage(
+                          bmiValue: bmi.calcBMI(),
+                          bmiCategory: bmi.displayBMICategory(),
+                          someWords: bmi.displaySomeWords(),
+                        )),
               );
             },
             text: 'CALCULATE',
